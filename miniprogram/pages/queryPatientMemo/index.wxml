@@ -1,0 +1,39 @@
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">{{titleRange[titleValue]}}</view>
+        <view class="page__desc">{{subtitleRange[subtitleValue]}}</view>
+    </view>
+    <view class="page__bd">
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">患者信息</view>
+            <view class="weui-panel__bd">
+                <block wx:for="{{(page * entries > userNum) ? (userNum % entries):(entries)}}" wx:key="UserEntry">
+                    <navigator url="/pages/{{naviPageRange[naviPageValue]}}/index?index={{index + (page-1)*entries}}&update={{true}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                            <mp-icon icon="me" size="{{25}}" class="weui-media-box__thumb"></mp-icon>
+                        </view>
+                        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                            <view class="weui-media-box__title">{{userInfo[index].name}}</view>
+                            <view class="weui-media-box__desc">
+                                性别 : {{userInfo[index].gender}} 
+                                年龄 : {{userInfo[index].age}}    
+                                患肢 : {{userInfo[index].limb}}
+                            </view>
+                        </view>
+                    </navigator>
+                </block>
+            </view>
+        </view>
+    </view>
+    <view class="weui-flex">
+        <view class="weui-flex__item">
+            <view class="button_page" bind:tap="onPageUp">上一页</view>
+        </view>
+        <view class="weui-flex__item">
+            <view class="button">{{page}}/{{pageMax}}</view>
+        </view>
+        <view class="weui-flex__item">
+            <view class="button_page" bind:tap="onPageDown">下一页</view>
+        </view>
+    </view>
+</view>

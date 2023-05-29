@@ -1,0 +1,28 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/createPatientMemo/index",
+        "pages/queryPatientMemo/index",
+        "pages/downloadPatientMemo/index",
+        "pages/importRehabTemplate/index"
+    ],
+    "window": {
+        "backgroundColor": "#F6F6F6",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#F6F6F6",
+        "navigationBarTitleText": "小程序名字",
+        "navigationBarTextStyle": "black"
+    },
+    "sitemapLocation": "sitemap.json",
+    "lazyCodeLoading" :"requiredComponents",
+    "style": "v2",
+    "useExtendedLib": {
+        "weui": true
+    },
+    "plugins": {
+        "WechatSI": {
+            "version": "0.3.5",
+            "provider": "wx069ba97219f66d99"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+<!-- pages/downloadPatientMemo/index.wxml -->
+<wxml-to-canvas class="widget" height="{{windowHeight}}" width="{{windowWidth}}"></wxml-to-canvas>
+<view class="weui-flex">
+    <view class="weui-flex__item">
+        <view class="button_green" bind:tap="createPDF">生成PDF</view>
+    </view>
+</view>
+<view class="weui-flex">
+    <view class="weui-flex__item">
+        <view class="button_green" bind:tap="previewPDF">预览PDF</view>
+    </view>
+    <view class="weui-flex__item">
+        <view class="button_green" bind:tap="copyPDF">复制下载链接</view>
+    </view>
+</view>

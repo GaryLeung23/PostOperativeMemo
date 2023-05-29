@@ -1,0 +1,86 @@
+/* pages/createPatientMemo/index.wxss */
+.title {
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #000000;
+  font-size: 44rpx;
+  margin-bottom: 40rpx;
+}
+
+.button_add,
+.button_del {
+  margin: 12px;
+  padding: 0 10px;
+  text-align: center;
+  background-color: var(--weui-BG-0);
+  height: 2.3em;
+  line-height: 2.3em;
+  border-radius: 10px;
+  color: var(--weui-FG-1);
+}
+
+.button_add {
+  color: white;
+  background-color: #07c160;
+}
+
+.button_del {
+  color: red;
+}
+
+.button_add:active,
+.button_del:active {
+  opacity: 0.6;
+}
+
+
+.startYuyinImage {
+  position: fixed;
+  top: 216rpx;
+  left: 50%;
+  width: 240rpx;
+  height: 240rpx;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20rpx;
+  color: #fff;
+  text-align: center;
+  margin-left: -120rpx;
+  z-index: 1;
+}
+
+.startYuyinImage image {
+  margin: 60rpx auto;
+  width: 100rpx;
+  height: 100rpx;
+  z-index: 1;
+}
+
+.startYuyinImage view {
+  margin-top: 25rpx;
+  z-index: 1;
+}
+
+.videoWrap {
+  margin-top: 20rpx;
+  word-wrap: break-word;
+  position: relative;
+  width: 80%;
+  margin-left: 10%;
+  background: #FFFFFF;
+  box-shadow: 0 2px 16px 2px rgba(0, 0, 0, 0.1);
+  padding: 50rpx 60rpx;
+  box-sizing: border-box;
+  min-height: 260rpx;
+}
+
+.videoCon {
+  width: 100%;
+  margin: 0 auto;
+  padding: 10rpx;
+  background: #fff;
+}
+
+
+.weui-agree .weui-agree__text {
+  display: inline;
+}

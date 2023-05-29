@@ -1,0 +1,363 @@
+<view class="page">
+    <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+    <mp-form-page title="{{titleRange[titleValue]}}">
+        <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+            <!--  -->
+            <view class="weui-cells__group_form">
+                <view class="weui-cells__title">基本信息</view>
+            </view>
+            <mp-cells>
+                <mp-cell prop="name" title="姓名" ext-class="">
+                    <input value="{{formData.name}}" bindinput="formInputChange" data-field="name" class="weui-input" placeholder="请输入姓名" />
+                </mp-cell>
+                <mp-cell prop="gender" title="性别" ext-class="">
+                    <picker value="{{genderIdx}}" range="{{genderRange}}" bindchange="bindGenderChange">
+                        <view class="weui-input">{{genderRange[genderIdx]}}</view>
+                    </picker>
+                </mp-cell>
+                <mp-cell prop="age" title="年龄" ext-class="">
+                    <input value="{{formData.age}}" type="number" bindinput="formInputChange" data-field="age" class="weui-input" placeholder="请输入年龄" />
+                </mp-cell>
+                <mp-cell prop="limb" title="患肢" ext-class="">
+                    <input value="{{formData.limb}}" bindinput="formInputChange" data-field="limb" class="weui-input" placeholder="请输入受伤部位" />
+                </mp-cell>
+            </mp-cells>
+            <!--  -->
+            <view class="weui-cells__group_form">
+                <view class="weui-cells__title ">手术信息</view>
+                <view class="line"></view>
+                <block wx:for="{{surgeryNum}}" wx:key="surgeryIdx">
+                    <view class="weui-cells__group_form">
+                        <view class="weui-cells__title">手术{{index+1}}</view>
+                    </view>
+                    <mp-cells>
+                        <mp-cell title="手术名称" ext-class="">
+                            <block wx:if="{{isUpdate}}">
+                                <input value="{{formData.surgery[index].surgeryName}}" data-index="{{index}}" data-formtype="surgery" bindinput="formTypeFormInputChange" data-field="surgeryName" class="weui-input" placeholder="请输入手术名称" />
+                            </block>
+                            <block wx:else>
+                                <input data-index="{{index}}" data-formtype="surgery" bindinput="formTypeFormInputChange" data-field="surgeryName" class="weui-input" placeholder="请输入手术名称" />
+                            </block>
+                        </mp-cell>
+                        <mp-cell title="主刀医生" ext-class="">
+                            <block wx:if="{{isUpdate}}">
+                                <input value="{{formData.surgery[index].doctorName}}" data-index="{{index}}" data-formtype="surgery" bindinput="formTypeFormInputChange" data-field="doctorName" class="weui-input" placeholder="请输入医生名字" />
+                            </block>
+                            <block wx:else>
+                                <input data-index="{{index}}" data-formtype="surgery" bindinput="formTypeFormInputChange" data-field="doctorName" class="weui-input" placeholder="请输入医生名字" />
+                            </block>
+                        </mp-cell>
+                        <mp-cell title="手术时间" ext-class="">
+                            <picker data-index="{{index}}" mode="date" value="{{formData.surgery[index].surgeryDate}}" fields="month" bindchange="bindDateChange">
+                                <view class="weui-input">
+                                    {{formData.surgery[index].surgeryDate}}
+                                </view>
+                            </picker>
+                        </mp-cell>
+                    </mp-cells>
+                </block>
+                <view class="weui-flex">
+                    <view class="weui-flex__item">
+                        <view class="button_add" bind:tap="onAddSurgeryInfo">添加</view>
+                    </view>
+                    <view class="weui-flex__item">
+                        <view class="button_del" bind:tap="onDelSurgeryInfo">删除</view>
+                    </view>
+                </view>
+            </view>
+            <!--  -->
+            <view class="weui-cells__group_form">
+                <view class="weui-cells__title">患肢活动度进展</view>
+                <view class="line"></view>
+                <block wx:for="{{MobilityProgress}}" wx:key="MProgIdx">
+                    <view class="weui-cells__group_form">
+                        <view class="weui-cells__title">
+                            病历{{index+1}} {{formData.mobility[index].date}}
+                        </view>
+                        <view class="line"></view>
+                    </view>
+                    <view class="page-body">
+                        <view class="page-section">
+                            <view class="weui-cell weui-cell_input">
+                                <view class="weui-cell__hd">
+                                    <view class="weui-label">时间</view>
+                                </view>
+                                <view class="weui-cell__bd">
+                                    <picker data-index="{{index}}" mode="multiSelector" bindchange="bindMPMobilityTimeChange" bindcolumnchange="bindMPCMobilityTimeChange" value="{{formData.mobility[index].timeValue}}" range="{{mobilityTimeRange}}">
+                                        <view class="weui-input">
+                                            {{formData.mobility[index].num}} {{formData.mobility[index].unit}} 内
+                                        </view>
+                                    </picker>
+                                </view>
+                            </view>
+                            <view class="weui-cell weui-cell_input">
+                                <view class="weui-cell__hd">
+                                    <view class="weui-label">情况</view>
+                                </view>
+                                <view class="weui-cell__bd">
+                                    <picker data-index="{{index}}" mode="multiSelector" bindchange="bindMPMobilitySituationChange" bindcolumnchange="bindMPCMobilitySituationChange" value="{{formData.mobility[index].situationValue}}" range="{{mobilitySituationRange}}">
+                                        <view class="weui-input">
+                                            {{formData.mobility[index].type}} {{formData.mobility[index].subType}} 不超过 {{formData.mobility[index].angle}}
+                                        </view>
+                                    </picker>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="line"></view>
+                </block>
+                <view class="weui-flex">
+                    <view class="weui-flex__item">
+                        <view class="button_add" bind:tap="onAddMobilityInfo">添加</view>
+                    </view>
+                    <view class="weui-flex__item">
+                        <view class="button_del" bind:tap="onDelMobilityInfo">删除</view>
+                    </view>
+                </view>
+            </view>
+            <!-- <> -->
+            <view class="weui-cells__group_form">
+                <view class="weui-cells__title">患肢负重进展</view>
+                <view class="line"></view>
+                <block wx:for="{{weightProgress}}" wx:key="WBProgIdx">
+                    <view class="weui-cells__group_form">
+                        <view class="weui-cells__title">
+                            病历{{index+1}} {{formData.weightBearing[index].date}}
+                        </view>
+                        <view class="line"></view>
+                    </view>
+                    <view class="page-body">
+                        <view class="page-section">
+                            <view class="weui-cell weui-cell_input">
+                                <view class="weui-cell__hd">
+                                    <view class="weui-label">时间</view>
+                                </view>
+                                <view class="weui-cell__bd">
+                                    <picker data-index="{{index}}" mode="multiSelector" bindchange="bindMPWeightTimeChange" bindcolumnchange="bindMPCWeightTimeChange" value="{{formData.weightBearing[index].timeValue}}" range="{{weightTimeRange}}">
+                                        <view class="weui-input">
+                                            {{formData.weightBearing[index].num}} {{formData.weightBearing[index].unit}} 内
+                                        </view>
+                                    </picker>
+                                </view>
+                            </view>
+                            <view class="weui-cell weui-cell_input">
+                                <view class="weui-cell__hd">
+                                    <view class="weui-label">情况</view>
+                                </view>
+                                <view class="weui-cell__bd">
+                                    <picker data-index="{{index}}" mode="multiSelector" bindchange="bindMPWeightSituationChange" bindcolumnchange="bindMPCWeightSituationChange" value="{{formData.weightBearing[index].situationValue}}" range="{{weightSituationRange}}">
+                                        <view class="weui-input" wx:if="{{formData.weightBearing[index].type == '负重' }}">
+                                            {{formData.weightBearing[index].type}} 不超过 {{formData.weightBearing[index].percent}}
+                                        </view>
+                                        <view class="weui-input" wx:else>
+                                            {{formData.weightBearing[index].type}}
+                                        </view>
+                                    </picker>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="line"></view>
+                </block>
+                <view class="weui-flex">
+                    <view class="weui-flex__item">
+                        <view class="button_add" bind:tap="onAddWeightBearingInfo">添加</view>
+                    </view>
+                    <view class="weui-flex__item">
+                        <view class="button_del" bind:tap="onDelWeightBearingInfo">删除</view>
+                    </view>
+                </view>
+            </view>
+            <!-- <> -->
+            <view class="weui-cells__group_form">
+                <view class="weui-cells__title">支具/前臂吊带</view>
+                <view class="line"></view>
+                <block wx:for="{{braceInfoProgress}}" wx:key="BIProgIdx">
+                    <view class="weui-cells__group_form">
+                        <view class="weui-cells__title">
+                            病历{{index+1}} {{formData.braceInfo[index].date}}
+                        </view>
+                        <view class="line"></view>
+                    </view>
+                    <view class="page-body">
+                        <view class="page-section">
+                            <view class="weui-cell weui-cell_input">
+                                <view class="weui-cell__hd">
+                                    <view class="weui-label">支具</view>
+                                </view>
+                                <view class="weui-cell__bd">
+                                    <picker data-index="{{index}}" mode="multiSelector" bindchange="bindMPBraceInfoTypeChange" bindcolumnchange="bindMPCBraceInfoTypeChange" value="{{formData.braceInfo[index].typeTime}}" range="{{braceInfoTypeRange}}">
+                                        <view class="weui-input">
+                                            {{formData.braceInfo[index].type}}
+                                        </view>
+                                    </picker>
+                                </view>
+                            </view>
+                            <view class="weui-cell weui-cell_input">
+                                <view class="weui-cell__hd">
+                                    <view class="weui-label">时间</view>
+                                </view>
+                                <view class="weui-cell__bd">
+                                    <picker data-index="{{index}}" mode="multiSelector" bindchange="bindMPBraceInfoTimeChange" bindcolumnchange="bindMPCBraceInfoTimeChange" value="{{formData.braceInfo[index].timeValue}}" range="{{braceInfoTimeRange}}">
+                                        <view class="weui-input">
+                                            佩带至术后 {{formData.braceInfo[index].num}} {{formData.braceInfo[index].unit}}
+                                        </view>
+                                    </picker>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="line"></view>
+                </block>
+                <view class="weui-flex">
+                    <view class="weui-flex__item">
+                        <view class="button_add" bind:tap="onAddBraceInfo">添加</view>
+                    </view>
+                    <view class="weui-flex__item">
+                        <view class="button_del" bind:tap="onDelBraceInfo">删除</view>
+                    </view>
+                </view>
+            </view>
+            <!-- <> -->
+            <view class="weui-cells__group_form">
+                <view class="weui-cells__title">支具角度进展</view>
+                <view class="line"></view>
+                <block wx:for="{{braceAngleProgress}}" wx:key="BAProgIdx">
+                    <view class="weui-cells__group_form">
+                        <view class="weui-cells__title">
+                            病历{{index+1}} {{formData.braceAngle[index].date}}
+                        </view>
+                        <view class="line"></view>
+                    </view>
+                    <view class="page-body">
+                        <view class="page-section">
+                            <view class="weui-cell weui-cell_input">
+                                <view class="weui-cell__hd">
+                                    <view class="weui-label">时间</view>
+                                </view>
+                                <view class="weui-cell__bd">
+                                    <picker data-index="{{index}}" mode="multiSelector" bindchange="bindMPBraceAngleTimeChange" bindcolumnchange="bindMPCBraceAngleTimeChange" value="{{formData.braceAngle[index].timeValue}}" range="{{braceAngleTimeRange}}">
+                                        <view class="weui-input">
+                                            {{formData.braceAngle[index].num}} {{formData.braceAngle[index].unit}} 内
+                                        </view>
+                                    </picker>
+                                </view>
+                            </view>
+                            <view class="weui-cell weui-cell_input">
+                                <view class="weui-cell__hd">
+                                    <view class="weui-label">情况</view>
+                                </view>
+                                <view class="weui-cell__bd">
+                                    <picker data-index="{{index}}" mode="multiSelector" bindchange="bindMPBraceAngleTypeChange" bindcolumnchange="bindMPCBraceAngleTypeChange" value="{{formData.braceAngle[index].typeValue}}" range="{{braceAngleTypeRange}}">
+                                        <view class="weui-input">
+                                            支具 {{formData.braceAngle[index].type}} {{formData.braceAngle[index].angle}}
+                                        </view>
+                                    </picker>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="line"></view>
+                </block>
+                <view class="weui-flex">
+                    <view class="weui-flex__item">
+                        <view class="button_add" bind:tap="onAddBraceAngle">添加</view>
+                    </view>
+                    <view class="weui-flex__item">
+                        <view class="button_del" bind:tap="onDelBraceAngle">删除</view>
+                    </view>
+                </view>
+            </view>
+            <!-- <> -->
+            <view class="weui-cells__group_form">
+                <view class="weui-cells__title">组织质量</view>
+                <view class="line"></view>
+                <block wx:for="{{tissueQualityProgress}}" wx:key="TQProgIdx">
+                    <view class="weui-cells__group_form">
+                        <view class="weui-cells__title">
+                            病历{{index+1}} {{formData.tissueQuality[index].date}}
+                        </view>
+                        <view class="line"></view>
+                    </view>
+                    <view class="page-body">
+                        <view class="page-section">
+                            <view class="weui-cell weui-cell_input">
+                                <view class="weui-cell__hd">
+                                    <view class="weui-label">骨质量</view>
+                                </view>
+                                <view class="weui-cell__bd">
+                                    <picker data-index="{{index}}" mode="multiSelector" bindchange="bindMPTissueQualityBoneChange" bindcolumnchange="bindMPCTissueQualityBoneChange" value="{{formData.tissueQuality[index].boneValue}}" range="{{tissueQualityBoneRange}}">
+                                        <view class="weui-input">
+                                            {{formData.tissueQuality[index].bone}}
+                                        </view>
+                                    </picker>
+                                </view>
+                            </view>
+                            <view class="weui-cell weui-cell_input">
+                                <view class="weui-cell__hd">
+                                    <view class="weui-label">肌腱质量</view>
+                                </view>
+                                <view class="weui-cell__bd">
+                                    <picker data-index="{{index}}" mode="multiSelector" bindchange="bindMPTissueQualityTendonsChange" bindcolumnchange="bindMPCTissueQualityTendonsChange" value="{{formData.tissueQuality[index].tendonsValue}}" range="{{tissueQualityTendonsRange}}">
+                                        <view class="weui-input">
+                                            {{formData.tissueQuality[index].tendons}}
+                                        </view>
+                                    </picker>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="line"></view>
+                </block>
+                <view class="weui-flex">
+                    <view class="weui-flex__item">
+                        <view class="button_add" bind:tap="onAddTissueQuality">添加</view>
+                    </view>
+                    <view class="weui-flex__item">
+                        <view class="button_del" bind:tap="onDelTissueQuality">删除</view>
+                    </view>
+                </view>
+            </view>
+            <!-- <> -->
+            <view class="weui-cells__group_form">
+                <view class="weui-cells__title">其他注意事项(语音输入)</view>
+                <view class="line"></view>
+                <view class="videoWrap">
+                    <textarea class='videoCon' bindinput="formInputChange" data-field="recordContent" placeholder='Waiting...' value='{{formData.recordContent}}'></textarea>
+                </view>
+                <view class="weui-flex">
+                    <view class="weui-flex__item">
+                        <block wx:if="{{tmpFilePath == ''}}">
+                            <view class="button" bind:touchstart="onStartRecord" bind:touchend="onStopRecord">
+                                <mp-icon icon="{{iconList[0].icon}}" color="{{iconList[0].color}}" size="{{iconList[0].size}}"></mp-icon>
+                            </view>
+                        </block>
+                        <block wx:else>
+                            <view class="button_add" bind:touchstart="onStartRecord" bind:touchend="onStopRecord">
+                                <mp-icon icon="{{iconList[0].icon}}" color="{{iconList[0].color}}" size="{{iconList[0].size}}"></mp-icon>
+                            </view>
+                        </block>
+                    </view>
+                    <view class="weui-flex__item">
+                        <view class="button_del" bind:tap="onPlayRecord">
+                            <mp-icon icon="{{iconList[1].icon}}" color="{{iconList[1].color}}" size="{{iconList[1].size}}"></mp-icon>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!--  -->
+        </mp-form>
+        <view slot="button">
+            <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
+            <block wx:if="{{isUpdate}}">
+                <button class="weui-btn" type="warn" bindtap="delUserInfo">删除</button>
+            </block>
+        </view>
+    </mp-form-page>
+</view>
+<view class="startYuyinImage" wx:if="{{recordState == true}}">
+    <image src="../../images/mike.svg"></image>
+</view>
+<view class="startYuyinImage" wx:if="{{playState == true}}">
+    <image src="../../images/volume.svg"></image>
+</view>
