@@ -50,5 +50,12 @@ Page({
     wx.navigateTo({
       url: `/pages/${e.currentTarget.dataset.page}/index` + (e.currentTarget.dataset.type ? `?type=${e.currentTarget.dataset.type}` : ''),
     });
-  }
+  },
+    onShareAppMessage() {
+
+    },
+    onShareTimeline(){
+      
+    }
+    
 });
