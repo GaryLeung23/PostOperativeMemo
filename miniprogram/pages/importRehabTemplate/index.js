@@ -126,7 +126,20 @@ Page({
             //设置为偏好
             
         }else if(funcValue == 2){
-            await this.delPdf(idx)
+            let that = this;
+            wx.showModal({
+                title: '警告',
+                content: '是否删除？',
+                success: async function(res) {
+                    if (res.confirm) {
+                        // console.log('用户点击确定')
+                        await that.delPdf(idx);
+                    } else if (res.cancel) {
+                        // console.log('用户点击取消')
+                    }
+                }
+              })
+            
         }
         this.setData({
             currentId: -1

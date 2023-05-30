@@ -449,6 +449,24 @@ Page({
   // 
   // 
   // 
+  onSubmitForm() {
+    let that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确认提交?',
+      success: async function (res) {
+        if (res.confirm) {
+          await that.submitForm();
+          // console.log('用户点击确定')
+        } else if (res.cancel) {
+          // console.log('用户点击取消')
+        }
+      }
+    })
+
+  },
+
+
   async submitForm() {
     //选择id="form"的组件
     this.selectComponent('#form').validate(async (valid, errors) => {
@@ -830,6 +848,23 @@ Page({
 
     })
   },
+
+
+  onDelUserInfo() {
+    var that = this
+    wx.showModal({
+      title: '警告',
+      content: '是否删除？',
+      success: async function(res) {
+        if (res.confirm) {
+         await that.delUserInfo()
+        } else if (res.cancel) {
+          // console.log('用户点击取消')
+        }
+      }
+    })
+  },
+
 
   async delUserInfo() {
     try {

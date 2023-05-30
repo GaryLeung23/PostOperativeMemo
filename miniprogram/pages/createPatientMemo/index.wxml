@@ -348,9 +348,9 @@
             <!--  -->
         </mp-form>
         <view slot="button">
-            <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
+            <button class="weui-btn" type="primary" bindtap="onSubmitForm">提交</button>
             <block wx:if="{{isUpdate}}">
-                <button class="weui-btn" type="warn" bindtap="delUserInfo">删除</button>
+                <button class="weui-btn" type="warn" bindtap="onDelUserInfo">删除</button>
             </block>
         </view>
     </mp-form-page>
