@@ -90,7 +90,7 @@ const style = (styles) => {
       height: 40,
     },
     content_height: {
-      height: 100,
+      height: 80,
       verticalAlign: 'top',
     },
   }

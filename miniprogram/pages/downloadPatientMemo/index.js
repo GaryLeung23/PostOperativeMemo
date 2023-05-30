@@ -425,7 +425,7 @@ Page({
         // console.log(wx.getSystemInfoSync().windowWidth,wx.getSystemInfoSync().windowHeight)
 
         let width = wx.getSystemInfoSync().windowWidth;
-        let height = 1300;
+        let height = 1800;
 
         this.setData({
             windowWidth: width,
@@ -451,6 +451,8 @@ Page({
 
         // console.log(st)
     },
+
+    
 
 
     initCanvas() {
