@@ -519,12 +519,12 @@ Page({
 
 
     async getCanvasData() {
-        try{
+        try {
             this.initStyle()
             await this.getSingleUserInfo();
             this.generateWxml();
             await this.initCanvas()
-        }catch(e){
+        } catch (e) {
             console.log(e)
             wx.showToast({
                 title: e,

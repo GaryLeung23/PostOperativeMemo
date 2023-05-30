@@ -81,7 +81,7 @@ Page({
       this.setData({
         userNum: res.count,
         userInfo: res.data,
-        pageMax: Math.ceil(res.count / this.data.entries)//向上取整
+        pageMax:  (res.count==0 ? 1: Math.ceil(res.count / this.data.entries))//向上取整
       })
     } catch (e) {
       wx.showToast({

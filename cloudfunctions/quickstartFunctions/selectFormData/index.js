@@ -10,7 +10,11 @@ const db = cloud.database();
 // 创建集合云函数入口函数
 exports.main = async (event, context) => {
 
-
+  try {
+    await db.createCollection('UserData');//collection名字不能中文
+  } catch (e) {
+    //
+  }
   try {
     const res = await db.collection('UserData').count();
     if (res.total != 0) {
@@ -42,6 +46,12 @@ exports.main = async (event, context) => {
           success: false,
           errMsg: '未处理subtype'
         };
+      }
+    }else{
+      return {
+        success: true,
+        data: [],
+        count: res.total
       }
     }
   } catch (e) {

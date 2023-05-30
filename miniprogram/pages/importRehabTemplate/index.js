@@ -302,7 +302,7 @@ Page({
             fileNum:fileList.count,
             fileList:fileList.data
         })
-        console.log(this.data.fileList)
+        // console.log(this.data.fileList)
     },
     /**
      * 生命周期函数--监听页面加载
