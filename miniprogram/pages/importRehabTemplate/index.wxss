@@ -1,1 +1,58 @@
 /* pages/importRehabTemplate/index.wxss */
+
+.page__hd {
+    padding: 40px
+}
+
+.page__bd {
+    padding-bottom: 40px
+}
+
+
+.page__title {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 400
+}
+
+.page__desc {
+    margin-top: 5px;
+    color: var(--weui-FG-1);
+    text-align: left;
+    font-size: 14px
+}
+
+.weui-slidecells {
+    margin: 8px;
+}
+
+.weui-slidecell {
+    background-color: var(--weui-BG-2);
+    border-radius: 8px;
+    padding: 26px;
+    line-height: 1.4;
+    font-size: 17px;
+}
+.flew_row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.text_wrap{
+    text-align: left;
+    white-space: pre-wrap; 
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-left: 20rpx; 
+}
+.view_bg{
+    background-color: #E0FFFF;
+}
+.button_import{
+    color: white;
+    background-color: #07c160;
+}
+.view_border{
+    border: 1px solid #EEE5DE;
+}

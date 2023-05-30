@@ -8,7 +8,7 @@
             <view class="weui-panel__hd">患者信息</view>
             <view class="weui-panel__bd">
                 <block wx:for="{{(page * entries > userNum) ? (userNum % entries):(entries)}}" wx:key="UserEntry">
-                    <navigator url="/pages/{{naviPageRange[naviPageValue]}}/index?index={{index + (page-1)*entries}}&update={{true}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <navigator url="/pages/{{naviPageRange[naviPageValue]}}/index?index={{index + (page-1)*entries}}&update={{true}}" class="weui-media-box weui-media-box_appmsg" hover-class="navigator-hover">
                         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
                             <mp-icon icon="me" size="{{25}}" class="weui-media-box__thumb"></mp-icon>
                         </view>

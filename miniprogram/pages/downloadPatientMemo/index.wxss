@@ -14,3 +14,13 @@
 .button_green:active {
   opacity: 0.6;
 }
+.page__hd {
+  text-align: center;
+  font-size: 14px;
+  color: var(--weui-FG-2);
+  height: 70rpx;
+}
+.page__desc {
+  padding: 0 16px;
+  font-size: 12px
+}  

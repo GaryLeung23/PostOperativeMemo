@@ -1,4 +1,7 @@
 <!-- pages/downloadPatientMemo/index.wxml -->
+<view class="page__hd">
+        <view class="page__title">向下滑动</view>
+</view>
 <wxml-to-canvas class="widget" height="{{windowHeight}}" width="{{windowWidth}}"></wxml-to-canvas>
 <view class="weui-flex">
     <view class="weui-flex__item">
@@ -7,7 +10,7 @@
 </view>
 <view class="weui-flex">
     <view class="weui-flex__item">
-        <view class="button_green" bind:tap="previewPDF">预览PDF</view>
+        <view class="button_green" bind:tap="previewPDF">预览/分享</view>
     </view>
     <view class="weui-flex__item">
         <view class="button_green" bind:tap="copyPDF">复制下载链接</view>

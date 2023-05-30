@@ -2,6 +2,7 @@ const uploadFormData = require('./uploadFormData/index');
 const selectFormData = require('./selectFormData/index');
 const delFormData = require('./delFormData/index');
 const wxmlToPdf = require('./wxmlToPdf/index');
+const templateFileOper = require('./templateFileOper/index');
 
 
 // 云函数入口函数
@@ -15,5 +16,7 @@ exports.main = async (event, context) => {
       return await delFormData.main(event, context);
     case 'wxmlToPdf':
       return await wxmlToPdf.main(event, context);
+    case 'templateFileOper':
+      return await templateFileOper.main(event, context);
   }
 };

@@ -43,7 +43,7 @@ exports.main = async (event, context) => {
     } else {
       // console.log(formData);   
       var _id = formData._id;
-      delete formData._id;
+      delete formData._id;//删除掉_id
       const res = await db.collection('UserData').doc(_id).update({
         // data 传入需要局部更新的数据
         data: formData

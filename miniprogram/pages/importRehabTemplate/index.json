@@ -1,3 +1,6 @@
 {
-    "usingComponents": {}
+    "usingComponents": {
+        "mp-icon": "weui-miniprogram/icon/icon",
+        "mp-slideview": "weui-miniprogram/slideview/slideview"
+    }
 }

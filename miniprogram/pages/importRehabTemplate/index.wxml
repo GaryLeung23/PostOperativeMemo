@@ -1,2 +1,23 @@
 <!--pages/importRehabTemplate/index.wxml-->
-<text>index.wxml</text>
+<view class="page__hd">
+    <view class="page__title">模板管理</view>
+    <view class="page__desc">左滑操作</view>
+</view>
+<view class="page__bd">
+    <view class="weui-slidecells">
+        <block wx:for="{{fileList}}" wx:key="fileEntry">
+            <mp-slideview data-index="{{index}}" show="{{index == currentId}}" buttons="{{slideButtons}}" icon="{{true}}" bindshow="slideShowTap" bindbuttontap="slideButtonTap">
+                <view class="weui-slidecell flew_row view_border">
+                    <mp-icon icon="copy" size="{{25}}"></mp-icon>
+                    <view class="text_wrap">{{item.basename}}</view>
+                </view>
+            </mp-slideview>
+        </block>
+    </view>
+</view>
+<view class="weui-flex">
+    <view class="weui-flex__item">
+        <view class="button button_import" bind:tap="onSelectFile">导入</view>
+    </view>
+</view>
+
